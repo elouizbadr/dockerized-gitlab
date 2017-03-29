@@ -1,17 +1,20 @@
 #!/bin/bash
 set -e
 
+# Edit supervisord config file 
 cat > /etc/supervisor/supervisord.conf<<EOF
 [supervisord]
 nodaemon=true
 
-[program:startup]
+[program:gitlab]
 priority=1
 command=./start-gitlab.sh
 startsecs=0
 
 EOF
 
+
+# Create a script to start GitLab instance
 cat > ./start-gitlab.sh<<EOF
 #!/bin/bash
 set -e
@@ -24,4 +27,6 @@ EOF
 
 chmod +x ./start-gitlab.sh
 
+
+# Launch supervisord
 /usr/bin/supervisord -c /etc/supervisor/supervisord.conf

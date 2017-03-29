@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  gitlab:
+    restart: always
+    image: albodor/gitlab:9.0.1.(20170328)
+    volumes:
+    - /srv/docker/gitlab:/var/opt/gitlab:Z
+    ports:
+    - "8080:80"
+    - "2222:22"
+    - "10443:443"
